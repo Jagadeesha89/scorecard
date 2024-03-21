@@ -12,11 +12,28 @@ def predit_score(data):
     predict=score_card.score(data)
     return predict
 
-st.set_page_config(page_title="Loan application Scoring")
-title=st.title("ScoreMe")
+st.set_page_config(page_title="Loan application Scoring",page_icon=":bank:",
+                   layout="wide")
+
+title=st.markdown("# :rainbow[ScoreMate]")
+
+
+st.header("About ScoreMate")
+
+st.info('''Introducing our innovative front-end web application designed for loan application 
+         scorecards powered by machine learning. Our application streamlines the lending process 
+         by leveraging advanced algorithms to accurately assess applicant risk profiles. 
+         With intuitive user interfaces and real-time decision-making capabilities, financial institutions can expedite 
+         loan approvals while minimizing risk exposure. This solution not only enhances operational efficiency 
+         but also ensures fair and transparent lending practices. 
+         Experience the future of lending assessment with our cutting-edge platform, 
+         revolutionizing how loans are processed and approved
+         ''')
+
+st.subheader("Bulk upload to genrate the score for all the loan application")
 
 def main():
-    data=st.file_uploader("Choose only CSV/Excel file")
+    data=st.file_uploader("Upload the CSV/Excel file with all the data to Genrate the score")
 
     if data is not None:
         file_extention=data.name.split(".")[-1].lower()
