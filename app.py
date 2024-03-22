@@ -13,7 +13,7 @@ def predit_score(data):
     return predict
 
 st.set_page_config(page_title="Loan application Scoring",page_icon=":bank:",
-                   layout="wide")
+                   layout="wide",initial_sidebar_state='expanded')
 
 title=st.markdown("# :rainbow[ScoreMate]")
 
@@ -30,10 +30,13 @@ st.info('''Introducing our innovative front-end web application designed for loa
          revolutionizing how loans are processed and approved
          ''')
 
-st.subheader("Bulk upload to genrate the score for all the loan application")
+st.subheader("Once File upload is sucessfull Genrate the score here")
+
+st.sidebar.subheader("This application used for genrating Loan applcation Score")
 
 def main():
-    data=st.file_uploader("Upload the CSV/Excel file with all the data to Genrate the score")
+    data=st.sidebar.file_uploader("Upload the CSV/Excel file with all the data to Genrate the score")
+    
 
     if data is not None:
         file_extention=data.name.split(".")[-1].lower()
@@ -42,9 +45,11 @@ def main():
             data1=pd.read_csv(data)
         elif file_extention in ["xls","xlsx"]:
             data1=pd.read_excel(data)
+            
         else:
             st.write("Error:Unsupported file format")
             data1=None
+        st.sidebar.success('File uploaded sucessfully Now you can genrate the score')    
 
         if data1 is not None and not data1.empty:
             ok=st.button("Genrate Score")
